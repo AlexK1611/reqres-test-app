@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
+import { ThemeProvider } from '@mui/material/styles'
+import { appTheme } from 'app/themes/appTheme'
 import App from 'app/components/App'
 
 const root = ReactDOM.createRoot(
@@ -8,6 +10,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <App />
+    <ThemeProvider theme={appTheme}>
+      <App />
+    </ThemeProvider>
   </StrictMode>
 )
