@@ -4,10 +4,10 @@ import AuthForm from 'auth/components/AuthForm'
 import { useNavigate } from 'react-router-dom'
 import { AuthFormTypes, AuthRoutes } from 'auth/helpers/authTypes'
 
-const Login: FC = () => {
+const Register: FC = () => {
     const navigate = useNavigate()
-    const goToRegisterPage = () => {
-        navigate(AuthRoutes.Register)
+    const goToLoginPage = () => {
+        navigate(AuthRoutes.Login)
     }
     return (
         <Paper
@@ -23,19 +23,19 @@ const Login: FC = () => {
             }}
         >
             <Typography sx={{ textAlign: 'center' }}>
-                Login
+                Register
             </Typography>
-            <AuthForm type={AuthFormTypes.Login} />
+            <AuthForm type={AuthFormTypes.Register} />
             <Stack spacing={1} direction='row'>
                 <Typography component='span'>
-                    Doesn't have an account?
+                    Already a member?
                 </Typography>
-                <Typography component='a' onClick={goToRegisterPage}>
-                    Register now!
+                <Typography component='a' onClick={goToLoginPage}>
+                    Log in!
                 </Typography>
             </Stack>
         </Paper>
     )
 }
 
-export default Login
+export default Register
