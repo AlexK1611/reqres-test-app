@@ -19,7 +19,11 @@ const App: FC = () => {
                 </Route>
                 <Route element={<GuestRoutes />}>
                     {authRouter.map(({ path, element: Element }) => (
-                        <Route path={path} element={<Element />} />
+                        <Route
+                            key={path}
+                            path={path}
+                            element={<Element />}
+                        />
                     ))}
                 </Route>
                 <Route path='*' element={<Navigate to='/' />} />
