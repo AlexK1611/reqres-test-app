@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { authReducer } from 'auth/store/authReducer'
+import { rootReducer } from 'app/store/rootReducer'
 import {
   persistStore,
   FLUSH,
@@ -11,9 +11,7 @@ import {
 } from 'redux-persist'
 
 export const appStore = configureStore({
-  reducer: {
-    auth: authReducer
-  },
+  reducer: rootReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
