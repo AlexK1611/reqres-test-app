@@ -17,6 +17,7 @@ const AuthFormInput: FC<AuthFormInputProps> = ({ name, label, control }) => {
             render={({ field, formState }) => (
                 <TextField
                     {...field}
+                    size='small'
                     label={label}
                     error={Boolean(formState.errors[name])}
                     helperText={

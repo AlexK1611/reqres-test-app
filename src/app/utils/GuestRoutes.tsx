@@ -5,21 +5,15 @@ import { selectToken } from 'auth/store/authSelectors'
 
 import { Outlet, Navigate } from 'react-router-dom'
 
-import { Box } from '@mui/material'
+import GuestLayout from 'app/components/GuestLayout'
 
 export const GuestRoutes: FC = () => {
     const token = useSelector(selectToken)
     return !token ? (
-        <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh'
-            }}
-        >
+        <GuestLayout>
             <Outlet />
-        </Box>
+        </GuestLayout>
+
     ) : (
         <Navigate to='/' />
     )

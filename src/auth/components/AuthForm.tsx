@@ -9,10 +9,12 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { authSchema } from 'auth/helpers/authValidation'
 
-import { Box, Button, CircularProgress } from '@mui/material'
+import { Box, Button, Stack } from '@mui/material'
 import AuthFormInput from 'auth/ui/AuthFormInput'
 
-import { AuthData, AuthFormTypes } from 'auth/helpers/authTypes'
+import { useNavigate } from 'react-router-dom'
+import { AuthData, AuthFormTypes, AuthRoutes } from 'auth/helpers/authTypes'
+
 
 interface AuthFormProps {
     type: AuthFormTypes
@@ -35,6 +37,15 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
         )
     }
 
+    const navigate = useNavigate()
+    const switchAuthPage = () => {
+        navigate(
+            type === AuthFormTypes.Login
+                ? AuthRoutes.Register
+                : AuthRoutes.Login
+        )
+    }
+
     return (
         <Box
             component='form'
@@ -42,9 +53,11 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                gap: '15px'
             }}
         >
+            <Stack>
             <AuthFormInput
                 name='email'
                 label='Email'
@@ -55,17 +68,19 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
                 label='Password'
                 control={control}
             />
-            {authLoading ? (
-                <CircularProgress size={25} />
-            ) : (
+            </Stack>
+            <Stack spacing={2} direction='row'>
                 <Button
-                    variant='contained'
+                    variant='outlined'
                     type='submit'
                     disabled={authLoading}
                 >
                     Submit
                 </Button>
-            )}
+                <Button variant='outlined' onClick={switchAuthPage}>
+                    {type === AuthFormTypes.Login ? 'Register' : 'Login'}
+                </Button>
+            </Stack>
         </Box>
     )
 }
