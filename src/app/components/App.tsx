@@ -4,9 +4,9 @@ import { CssBaseline } from '@mui/material'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
-import { UserRoutes } from 'app/utils/UserRoutes'
+import { ProtectedUserRoutes } from 'app/utils/ProtectedUserRoutes'
 import Users from 'users/components/Users'
-import { GuestRoutes } from 'app/utils/GuestRoutes'
+import { ProtectedGuestRoutes } from 'app/utils/ProtectedGuestRoutes'
 import { authRouter } from 'auth/helpers/authRouter'
 
 const App: FC = () => {
@@ -14,10 +14,10 @@ const App: FC = () => {
         <>
             <CssBaseline />
             <Routes>
-                <Route element={<UserRoutes />}>
+                <Route element={<ProtectedUserRoutes />}>
                     <Route path='/' element={<Users />} />
                 </Route>
-                <Route element={<GuestRoutes />}>
+                <Route element={<ProtectedGuestRoutes />}>
                     {authRouter.map(({ path, element: Element }) => (
                         <Route
                             key={path}

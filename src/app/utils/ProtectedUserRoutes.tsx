@@ -4,17 +4,17 @@ import { useSelector } from 'react-redux'
 import { selectToken } from 'auth/store/authSelectors'
 
 import { Outlet, Navigate } from 'react-router-dom'
+import { AuthRoutes } from 'auth/helpers/authTypes'
 
-import GuestLayout from 'app/components/GuestLayout'
+import UserLayout from 'app/components/UserLayout'
 
-export const GuestRoutes: FC = () => {
+export const ProtectedUserRoutes: FC = () => {
     const token = useSelector(selectToken)
-    return !token ? (
-        <GuestLayout>
+    return token ? (
+        <UserLayout>
             <Outlet />
-        </GuestLayout>
-
+        </UserLayout>
     ) : (
-        <Navigate to='/' />
+        <Navigate to={AuthRoutes.Login} />
     )
 }
