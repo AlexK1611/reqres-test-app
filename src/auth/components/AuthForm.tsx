@@ -62,11 +62,13 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
                 name='email'
                 label='Email'
                 control={control}
+                type='text'
             />
             <AuthFormInput
                 name='password'
                 label='Password'
                 control={control}
+                type='password'
             />
             </Stack>
             <Stack spacing={2} direction='row'>

@@ -7,9 +7,15 @@ interface AuthFormInputProps {
     name: keyof AuthData,
     label: string,
     control: Control<AuthData, any>
+    type: 'text' | 'password'
 }
 
-const AuthFormInput: FC<AuthFormInputProps> = ({ name, label, control }) => {
+const AuthFormInput: FC<AuthFormInputProps> = ({
+    name,
+    label,
+    control,
+    type
+}) => {
     return (
         <Controller
             control={control}
@@ -19,6 +25,7 @@ const AuthFormInput: FC<AuthFormInputProps> = ({ name, label, control }) => {
                     {...field}
                     size='small'
                     label={label}
+                    type={type}
                     error={Boolean(formState.errors[name])}
                     helperText={
                         <FormHelperText component='span'>
