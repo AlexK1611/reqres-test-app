@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'app/helpers/appTypes'
 import { logout } from 'auth/store/authSlice'
 
-import { Box, Button, Divider, List, Typography } from '@mui/material'
+import { Box, Button, List, Typography } from '@mui/material'
 import PageLink from 'app/ui/PageLink'
 import { appTheme } from 'app/themes/appTheme'
 
@@ -38,25 +38,37 @@ const UserLayout: FC<UserLayoutProps> = ({ children }) => {
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', flex: 1 }}>
-                <List
+                <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
+                        justifyContent: 'space-between',
                         alignItems: 'center',
                         flex: 1,
-                        padding: 0,
+                        paddingBottom: '30px',
                         backgroundColor: appTheme.palette.primary.dark
                     }}
                 >
-                    {pageLinks.map(link => (
-                        <PageLink path={link.path} title={link.title} />
-                    ))}
-                    <Divider />
+                    <List
+                        sx={{
+                            width: '100%',
+                            height: '100%',
+                            padding: 0
+                        }}
+                    >
+                        {pageLinks.map(link => (
+                            <PageLink
+                                key={link.path}
+                                path={link.path}
+                                title={link.title}
+                            />
+                        ))}
+                    </List>
                     <Button variant='outlined' onClick={handleLogout}>
                         Logout
                     </Button>
-                </List>
-                <Box sx={{ flex: 5 }}>
+                </Box>
+                <Box sx={{ flex: 5, padding: '60px' }}>
                     {children}
                 </Box>
             </Box>

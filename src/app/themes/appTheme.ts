@@ -18,6 +18,10 @@ export const appTheme = createTheme({
             fontSize: '25px', 
             textAlign: 'center',
             color: '#00C4F5'
+        },
+        body1: {
+            fontSize: '25px',
+            color: '#00C4F5'
         }
     }
 })
