@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAuthLoading } from 'auth/store/authSelectors'
+import { selectAuthLoading, selectAuthError } from 'auth/store/authSelectors'
 import { AppDispatch } from 'app/helpers/appTypes'
 import { fetchLogin, fetchRegister } from 'auth/store/authThunks'
 
@@ -9,7 +9,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { authSchema } from 'auth/helpers/authValidation'
 
-import { Box, Button, Stack } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import AuthFormInput from 'auth/ui/AuthFormInput'
 
 import { useNavigate } from 'react-router-dom'
@@ -23,6 +23,7 @@ interface AuthFormProps {
 const AuthForm: FC<AuthFormProps> = ({ type }) => {
     const dispatch = useDispatch<AppDispatch>()
     const authLoading = useSelector(selectAuthLoading)
+    const authError = useSelector(selectAuthError)
 
     const { control, handleSubmit } = useForm<AuthData>({
         resolver: yupResolver(authSchema),
@@ -51,6 +52,7 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
             component='form'
             onSubmit={handleSubmit(onSubmit)}
             sx={{
+                position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -58,18 +60,18 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
             }}
         >
             <Stack>
-            <AuthFormInput
-                name='email'
-                label='Email'
-                control={control}
-                type='text'
-            />
-            <AuthFormInput
-                name='password'
-                label='Password'
-                control={control}
-                type='password'
-            />
+                <AuthFormInput
+                    name='email'
+                    label='Email'
+                    control={control}
+                    type='text'
+                />
+                <AuthFormInput
+                    name='password'
+                    label='Password'
+                    control={control}
+                    type='password'
+                />
             </Stack>
             <Stack spacing={2} direction='row'>
                 <Button
@@ -79,10 +81,30 @@ const AuthForm: FC<AuthFormProps> = ({ type }) => {
                 >
                     Submit
                 </Button>
-                <Button variant='outlined' onClick={switchAuthPage}>
+                <Button
+                    variant='outlined'
+                    onClick={switchAuthPage}
+                    disabled={authLoading}
+                >
                     {type === AuthFormTypes.Login ? 'Register' : 'Login'}
                 </Button>
             </Stack>
+            {authError && (
+                <Typography
+                    color='error'
+                    variant='caption'
+                    sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: '50%',
+                        transform: 'translate(-50%, 100%)',
+                        width: '100%',
+                        textAlign: 'center'
+                    }}
+                >
+                    Something went wrong.
+                </Typography>
+            )}
         </Box>
     )
 }

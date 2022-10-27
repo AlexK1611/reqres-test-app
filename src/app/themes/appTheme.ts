@@ -26,6 +26,9 @@ export const appTheme = createTheme({
         body1: {
             fontSize: '25px',
             color: '#00C4F5'
+        },
+        caption: {
+            fontSize: '15px'
         }
     }
 })
