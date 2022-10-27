@@ -26,7 +26,8 @@ const UserLayout: FC<UserLayoutProps> = ({ children }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100vh',
-                backgroundImage: `url(${UserBackground})`
+                background: `url(${UserBackground}) no-repeat`,
+                backgroundSize: 'cover'
             }}
         >
             <Box

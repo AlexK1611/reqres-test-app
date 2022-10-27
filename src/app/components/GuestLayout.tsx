@@ -14,7 +14,8 @@ const GuestLayout: FC<GuestLayoutProps> = ({ children }) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh',
-                backgroundImage: `url(${GuestBackground})`
+                background: `url(${GuestBackground}) no-repeat`,
+                backgroundSize: 'cover'
             }}
         >
             {children}
