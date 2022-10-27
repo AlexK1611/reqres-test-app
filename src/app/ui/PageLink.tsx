@@ -24,7 +24,7 @@ const PageLink: FC<PageLinkProps> = ({ path, title }) => {
         <ListItem
             selected={checkActiveLink()}
             onClick={goToPage}
-            sx={{ padding: '10px', cursor: 'pointer' }}
+            sx={{ padding: '20px', cursor: 'pointer' }}
         >
             <Typography variant='button'>
                 {title}

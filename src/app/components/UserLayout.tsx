@@ -7,6 +7,7 @@ import { logout } from 'auth/store/authSlice'
 import { Box, Button, List, Typography } from '@mui/material'
 import PageLink from 'app/ui/PageLink'
 import { appTheme } from 'app/themes/appTheme'
+import UserBackground from 'assets/images/user-background.jpg'
 
 import { pageLinks } from 'app/helpers/pageLinks'
 
@@ -24,7 +25,8 @@ const UserLayout: FC<UserLayoutProps> = ({ children }) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                height: '100vh'
+                height: '100vh',
+                backgroundImage: `url(${UserBackground})`
             }}
         >
             <Box

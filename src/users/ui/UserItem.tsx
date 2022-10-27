@@ -4,11 +4,10 @@ import { UsersRoutes } from 'users/helpers/usersTypes'
 import {
     Box,
     Button,
-    Card,
-    CardContent,
     CardMedia,
     Typography
 } from '@mui/material'
+import { appTheme } from 'app/themes/appTheme'
 
 interface UserItemProps {
     firstName: string,
@@ -28,16 +27,18 @@ const UserItem: FC<UserItemProps> = ({
         navigate(`${UsersRoutes.Users}/${id}`)
     }
     return (
-        <Card
+        <Box
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                backgroundColor: appTheme.palette.primary.dark,
+                borderRadius: '15px'
             }}
         >
             <CardMedia
                 component='img'
-                sx={{ width: '100%' }}
+                sx={{ width: '100%', borderRadius: '15px' }}
                 image={avatar}
             />
             <Box
@@ -56,7 +57,7 @@ const UserItem: FC<UserItemProps> = ({
                     Info
                 </Button>
             </Box>
-        </Card>
+        </Box>
     )
 }
 

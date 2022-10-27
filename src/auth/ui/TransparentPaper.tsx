@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { Paper } from '@mui/material'
+import { appTheme } from 'app/themes/appTheme'
 
 interface TransparentPaperProps {
   children: ReactNode
@@ -16,7 +17,7 @@ const TransparentPaper: FC<TransparentPaperProps> = ({ children }) => {
         gap: '30px',
         padding: '45px',
         borderRadius: '15px',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        backgroundColor: appTheme.palette.primary.dark
       }}
     >
       {children}

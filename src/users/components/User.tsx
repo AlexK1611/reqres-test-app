@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 
 import { Box, CardMedia, Stack, Typography } from '@mui/material'
 import { removeCurrentUser } from 'users/store/usersSlice'
+import { appTheme } from 'app/themes/appTheme'
 
 const User: FC = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -40,7 +41,14 @@ const User: FC = () => {
                         image={currentUser.avatar}
                         sx={{ width: '300px', borderRadius: '15px' }}
                     />
-                    <Stack spacing={3}>
+                    <Stack
+                        spacing={3}
+                        sx={{
+                            backgroundColor: appTheme.palette.primary.dark,
+                            padding: '30px',
+                            borderRadius: '15px'
+                        }}
+                    >
                         <Typography variant='body1'>
                             {`Name: ${currentUser.first_name} ${currentUser.last_name}`}
                         </Typography>
